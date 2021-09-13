@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>remote</title>
+
+    </h:head>
+    <h:body>
+        <div class="card">
+            <h:form>
+                <p:remoteCommand name="rc" update="msgs" action="#{remoteCommandView.execute}"/>
+
+                <p:remoteCommand name="rc2" update="msgs" action="#{remoteCommandView.execute}"
+                                 oncomplete="PF('msgsWidget').renderMessage({severity: 'info', summary: 'Data Received', detail: args.serverTime})"/>
+
+                <h5>Basic</h5>
+                <p>Ejecute un comando remoto simple llamando a una función javascript.</p>
+                <p:commandButton type="button" value="Send" icon="pi pi-refresh" onclick="rc()"/>
+
+                <h5>Parameters</h5>
+                <p>Pasando parámetros al método remoto como un objeto javascript.</p>
+                <p:commandButton type="button" value="Send" icon="pi pi-refresh"
+                                 onclick="rc([{name: 'param1', value: 'foo'}, {name: 'param2', value: 'bar'}])"/>
+
+                <h5>Receive Values Back</h5>
+                <p>La recepción de valores forma el servidor como un objeto json serializado.</p>
+                <p:commandButton type="button" value="Send" icon="pi pi-refresh" onclick="rc2()"/>
+
+                <script type="text/javascript">
+                    function runRemoteCommand(param1, param2) {
+                        var promise = rc([{name: 'param1', value: param1}, {name: 'param2', value: param2}]);
+                        promise.then(function (responseData) {
+                            var serverTime = responseData.jqXHR.pfArgs.serverTime;
+                            console.log("Request successful, returned server time is", serverTime);
+                        }).catch(function (error) {
+                            console.error("Request failed", error);
+                        });
+                    }
+                </script>
+
+                <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" widgetVar="msgsWidget" />
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
+

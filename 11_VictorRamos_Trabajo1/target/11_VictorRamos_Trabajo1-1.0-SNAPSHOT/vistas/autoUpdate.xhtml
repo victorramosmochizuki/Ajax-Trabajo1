@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>Validacion de datos</title>
+
+    </h:head>
+    <h:body>
+
+        <div class="card">
+            <h:form>
+                <p:outputPanel styleClass="p-mb-3">
+                    <p:autoUpdate/>
+
+                    Time: #{autoUpdateView.time}
+                </p:outputPanel>
+
+                <p:commandButton value="AJAX request" update="@none" process="@this" styleClass="p-mr-2" />
+                <p:commandButton value="Ignore AutoUpdate" update="@none" process="@this" ignoreAutoUpdate="true"/>
+            </h:form>
+        </div>
+
+    </h:body>
+</html>
+
+

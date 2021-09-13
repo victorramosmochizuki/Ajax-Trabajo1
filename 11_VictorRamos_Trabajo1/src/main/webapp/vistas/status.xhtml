@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>Validacion de datos</title>
+
+    </h:head>
+    <h:body>
+
+
+        <div class="card text-secondary">
+            <p:ajaxStatus styleClass="p-d-block p-mb-4">
+                <f:facet name="default">
+                    <h:outputText value="Estado: En espera" />
+                </f:facet>
+
+                <f:facet name="start">
+                    <i class="pi pi-spin pi-spinner loading-icon" aria-hidden="true"></i>
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="Estado: Completado" />
+                </f:facet>
+            </p:ajaxStatus>
+
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
+
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <div class="p-text-center">
+                    <i class="pi pi-spinner loading-icon" aria-hidden="true"></i>
+                </div>
+            </p:dialog>
+
+            <h:form>
+                <p:commandButton value="Send" styleClass="ui-button-outlined ui-button-secondary" />
+            </h:form>
+        </div>
+
+
+
+
+    </h:body>
+</html>
+
+

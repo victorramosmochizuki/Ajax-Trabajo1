@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>Funcionalidades de Primefaces</title>
+
+    </h:head>
+    <body>
+
+        <center>
+            <h1>Funcionalidades de Primefaces 1</h1>
+        </center>
+
+        <p:growl id="mensaje" showDetail="true" />
+        <p:growl id="growl-sticky" for="sticky-key" showDetail="true" sticky="true" />
+
+        <h:form>
+            <p:panelMenu style="width:250px">
+                <p:submenu label="AjaxCore" >
+                    <p:menuitem value="Validation" icon="pi pi-save" url="./faces/vistas/validation.xhtml" />
+                    <p:menuitem value="Status" icon="pi pi-save" url="./faces/vistas/status.xhtml" />
+                    <p:menuitem value="Remote" icon="pi pi-save" url="./faces/vistas/remote.xhtml" />
+                    <p:menuitem value="Dropdown" icon="pi pi-save" url="./faces/vistas/dropdown.xhtml" />
+                    <p:menuitem value="Autoupdate" icon="pi pi-save" url="./faces/vistas/autoUpdate.xhtml" />
+                    <p:menuitem value="Fragment" icon="pi pi-save" url="./faces/vistas/fragment.xhtml" />
+                </p:submenu>
+                
+            </p:panelMenu>
+        </h:form>
+
+
+    </body>
+</html>

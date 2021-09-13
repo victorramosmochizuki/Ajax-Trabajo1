@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>Desplegable</title>
+
+    </h:head>
+    <h:body>
+        <div class="card">
+            <h:form>
+                <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+
+                <p:panel header="Selecciona Localidad" style="margin-bottom:10px;">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:outputLabel for="country" value="Pais: "/>
+                        <p:selectOneMenu id="country" value="#{dropdownView.country}" style="width:150px">
+                            <p:ajax listener="#{dropdownView.onCountryChange()}" update="city"/>
+                            <f:selectItem itemLabel="Selecciona Pais" itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{dropdownView.countries}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="city" value="Ciudad: "/>
+                        <p:selectOneMenu id="city" value="#{dropdownView.city}" style="width:150px">
+                            <f:selectItem itemLabel="Selecciona Ciudad" itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{dropdownView.cities}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+
+                    <p:divider />
+
+                    <p:commandButton value="Submit" update="msgs" action="#{dropdownView.displayLocation}"
+                                     icon="pi pi-check"/>
+                </p:panel>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
+
